@@ -66,8 +66,8 @@ export function QuestionScreen({ question, index, total, picked, onPick, onNext 
 
           {/* Space is reserved up front so the options don't jump when feedback appears. */}
           <div className={`mt-4 flex items-center justify-between gap-6 ${answered ? '' : 'invisible'}`}>
-            <p className={`text-2xl font-bold uppercase ${isCorrect ? 'text-ink' : 'text-accent'}`}>
-              {isCorrect ? 'Так!' : 'Не правильно'}
+            <p className={`text-2xl leading-[1.15] font-bold uppercase ${isCorrect ? 'text-ink' : 'text-accent'}`}>
+              {isCorrect ? 'Так!' : 'Упс, цього разу не\u00a0правильно'}
             </p>
             <Button onClick={onNext} disabled={!answered}>
               Далі

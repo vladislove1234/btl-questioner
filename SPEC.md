@@ -66,7 +66,7 @@ Intro ──tap──▶ Question 1 … N ──▶ Result + Form ──submit�
 - **After a tap:**
   1. All options lock.
   2. If the answer is correct, the chosen option turns **`--ink` bg, `--bg` text, ✓**, and the line **«Так!»** appears.
-  3. If it's wrong, the chosen option turns **`--accent` bg, `--bg` text, ✗**, the correct option turns **`--ink` with ✓**, and **«Не правильно»** appears (two words, as requested).
+  3. If it's wrong, the chosen option turns **`--accent` bg, `--bg` text, ✗**, the correct option turns **`--ink` with ✓**, and **«Упс, цього разу не правильно»** appears.
   4. The other options dim.
   5. The **«Далі»** pill appears and moves to the next question, or to Result + Form after the last one. There's no auto-advance.
 - There's no explanation text.
@@ -104,7 +104,7 @@ Intro ──tap──▶ Question 1 … N ──▶ Result + Form ──submit�
 | Intro hint | натисніть, щоб почати |
 | Progress | Питання {n} з {total} |
 | Correct | Так! |
-| Wrong | Не правильно |
+| Wrong | Упс, цього разу не правильно |
 | Next | Далі |
 | Score | {correct} з {total} |
 | Score caption | правильних відповідей |

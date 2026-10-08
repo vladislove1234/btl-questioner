@@ -23,7 +23,7 @@ it('runs the full flow and queues the submission', async () => {
     const correct = q.options.find((o) => o.id === q.correctOptionId)!
     const wrong = q.options.find((o) => o.id !== q.correctOptionId)!
     await user.click(screen.getByRole('button', { name: new RegExp((i === 0 ? wrong : correct).text) }))
-    expect(screen.getByText(i === 0 ? 'Не правильно' : 'Так!')).toBeVisible()
+    expect(screen.getByText(i === 0 ? 'Упс, цього разу не правильно' : 'Так!')).toBeVisible()
     await user.click(screen.getByRole('button', { name: 'Далі' }))
   }
 
