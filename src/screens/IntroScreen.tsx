@@ -67,17 +67,19 @@ export function IntroScreen({ onStart, onStaff }: Props) {
           </span>
         </h1>
         <img src={asset('images/logo-stacked.svg')} alt="Будинки та люди" style={s.logo} />
-        <img
-          src={asset('images/badge.svg')}
-          alt=""
+        {/* Star and lettering share one viewBox, so they overlay exactly; only the star spins. */}
+        <div
+          data-testid="badge"
           style={s.badge}
-          className="animate-[spin_20s_linear_infinite]"
           onPointerDown={startHold}
           onPointerUp={cancelHold}
           onPointerLeave={cancelHold}
           onPointerCancel={cancelHold}
           onContextMenu={(e) => e.preventDefault()}
-        />
+        >
+          <img src={asset('images/badge-star.svg')} alt="" className="block w-full animate-[spin_20s_linear_infinite]" />
+          <img src={asset('images/badge-text.svg')} alt="" className="absolute inset-0 w-full" />
+        </div>
         <p className="font-medium" style={s.cta}>
           натисніть, щоб почати
         </p>

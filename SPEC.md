@@ -28,7 +28,7 @@ The user supplies these files. Code references these exact paths.
 | `public/fonts/WorkSans-Black.*` | 900 |
 | `public/images/logo.svg` | Horizontal logo (background removed, cropped), used top-left on every screen after the Intro |
 | `public/images/logo-stacked.svg` | Stacked logo, extracted from the Intro mockup |
-| `public/images/badge.svg` | "100% ~~комісії~~ виграш" badge, extracted from the Intro mockup |
+| `public/images/badge-star.svg`, `badge-text.svg` | "100% ~~комісії~~ виграш" badge, extracted from the Intro mockup as two layers with one shared viewBox (the star rotates, the lettering stays still) |
 | `public/images/qr.png` | QR code → `https://t.me/+GtcbVmhgpMk4ZjJi` (permanent invite link), transparent background |
 | `design/intro-mockup.svg` | The supplied Intro design. Reference only, not published |
 | `design/*.pdf` | Original supplied files. Not published |
@@ -52,7 +52,7 @@ Intro ──tap──▶ Question 1 … N ──▶ Result + Form ──submit�
 ### 4.1 Intro
 
 - **Recreated in code from `design/intro-mockup.svg`**: real text plus the extracted logo and badge SVGs, positioned with the mockup's own coordinates in container units so the composition scales as one piece in any orientation.
-- Content: **«РІЄЛТОРСЬКИЙ / ТЕСТ»** (Work Sans Bold, uppercase), small **«від»**, the stacked logo, the badge overlapping the logo's bottom-right and slowly rotating (one turn per 20 s), and the small line **«натисніть, щоб почати»** (Medium) below. There's no pill button. The badge is decoration only, with no prize logic.
+- Content: **«РІЄЛТОРСЬКИЙ / ТЕСТ»** (Work Sans Bold, uppercase), small **«від»**, the stacked logo, the badge overlapping the logo's bottom-right (its star slowly rotates, one turn per 20 s, while the lettering stays upright), and the small line **«натисніть, щоб почати»** (Medium) below. There's no pill button. The badge is decoration only, with no prize logic.
 - **A tap anywhere on the screen** starts the test.
 - Exception: **pressing and holding the badge for 5 s** opens the staff check (§6.4) and does *not* start the test.
 

@@ -53,8 +53,8 @@ it('runs the full flow and queues the submission', async () => {
 
 it('opens the staff check after holding the badge for 5 s, without starting the test', () => {
   vi.useFakeTimers()
-  const { container } = render(<App />)
-  const badge = container.querySelector('img[src$="badge.svg"]')!
+  render(<App />)
+  const badge = screen.getByTestId('badge')
 
   fireEvent.pointerDown(badge)
   act(() => vi.advanceTimersByTime(5000))
