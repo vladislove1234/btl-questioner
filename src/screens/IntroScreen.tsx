@@ -71,6 +71,7 @@ export function IntroScreen({ onStart, onStaff }: Props) {
           src={asset('images/badge.svg')}
           alt=""
           style={s.badge}
+          className="animate-[spin_20s_linear_infinite]"
           onPointerDown={startHold}
           onPointerUp={cancelHold}
           onPointerLeave={cancelHold}

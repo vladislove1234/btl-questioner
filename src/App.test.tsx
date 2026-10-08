@@ -23,7 +23,7 @@ it('runs the full flow and queues the submission', async () => {
     const correct = q.options.find((o) => o.id === q.correctOptionId)!
     const wrong = q.options.find((o) => o.id !== q.correctOptionId)!
     await user.click(screen.getByRole('button', { name: new RegExp((i === 0 ? wrong : correct).text) }))
-    expect(screen.getByText(i === 0 ? 'Неправильно' : 'Правильно!')).toBeVisible()
+    expect(screen.getByText(i === 0 ? 'Не правильно' : 'Так!')).toBeVisible()
     await user.click(screen.getByRole('button', { name: 'Далі' }))
   }
 
@@ -33,7 +33,7 @@ it('runs the full flow and queues the submission', async () => {
   const submit = screen.getByRole('button', { name: /Надіслати/ })
   await user.type(screen.getByLabelText('Ваше імʼя та прізвище'), 'Олена Петренко')
   await user.type(screen.getByLabelText('Ваш номер телефону'), '0671234567')
-  expect(screen.getByLabelText('Ваш номер телефону')).toHaveValue('+380 67 123 45 67')
+  expect(screen.getByLabelText('Ваш номер телефону')).toHaveValue('67 123 45 67')
   expect(submit).toBeDisabled()
   await user.type(screen.getByLabelText('В якій компанії працюєте?'), 'АН Дім')
   await user.click(submit)

@@ -43,7 +43,7 @@ export function QuestionScreen({ question, index, total, picked, onPick, onNext 
           <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-line">
             <div className="h-full bg-ink transition-all duration-500" style={{ width: `${((index + 1) / total) * 100}%` }} />
           </div>
-          <h2 className="mt-10 text-[clamp(30px,3.6vw,48px)] leading-[1.05] font-bold tracking-[-0.01em] uppercase">
+          <h2 className="mt-10 text-[clamp(30px,3.6vw,48px)] leading-[1.15] font-bold tracking-[-0.01em] uppercase">
             {question.text}
           </h2>
         </div>
@@ -67,7 +67,7 @@ export function QuestionScreen({ question, index, total, picked, onPick, onNext 
           {/* Space is reserved up front so the options don't jump when feedback appears. */}
           <div className={`mt-4 flex items-center justify-between gap-6 ${answered ? '' : 'invisible'}`}>
             <p className={`text-2xl font-bold uppercase ${isCorrect ? 'text-ink' : 'text-accent'}`}>
-              {isCorrect ? 'Правильно!' : 'Неправильно'}
+              {isCorrect ? 'Так!' : 'Не правильно'}
             </p>
             <Button onClick={onNext} disabled={!answered}>
               Далі

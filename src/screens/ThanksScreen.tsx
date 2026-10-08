@@ -7,11 +7,11 @@ export function ThanksScreen({ onDone }: { onDone: () => void }) {
     <Screen>
       <Split>
         <div className="flex flex-col gap-8">
-          <h2 className="text-[clamp(34px,4.4vw,60px)] leading-[0.95] font-bold tracking-[-0.01em] uppercase">
+          <h2 className="text-[clamp(34px,4.4vw,60px)] leading-[1.12] font-bold tracking-[-0.01em] uppercase">
             Дякуємо, що познайомилися з нами ще краще!
           </h2>
           <p className="text-2xl font-medium">Залишився останній крок: долучайтеся до нашої спільноти рієлторів</p>
-          <p className="text-xl font-medium text-muted">
+          <p className="text-2xl font-medium">
             Тут ми будемо ділитися найновішою інформацією й анонсувати нові проєкти 🫶🏼
           </p>
           <Button onClick={onDone} className="self-start">

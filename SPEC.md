@@ -52,20 +52,20 @@ Intro ──tap──▶ Question 1 … N ──▶ Result + Form ──submit�
 ### 4.1 Intro
 
 - **Recreated in code from `design/intro-mockup.svg`**: real text plus the extracted logo and badge SVGs, positioned with the mockup's own coordinates in container units so the composition scales as one piece in any orientation.
-- Content: **«РІЄЛТОРСЬКИЙ / ТЕСТ»** (Work Sans Bold, uppercase), small **«від»**, the stacked logo, the badge overlapping the logo's bottom-right, and the small line **«натисніть, щоб почати»** (Medium) below. There's no pill button. The badge is decoration only, with no prize logic.
+- Content: **«РІЄЛТОРСЬКИЙ / ТЕСТ»** (Work Sans Bold, uppercase), small **«від»**, the stacked logo, the badge overlapping the logo's bottom-right and slowly rotating (one turn per 20 s), and the small line **«натисніть, щоб почати»** (Medium) below. There's no pill button. The badge is decoration only, with no prize logic.
 - **A tap anywhere on the screen** starts the test.
 - Exception: **pressing and holding the badge for 5 s** opens the staff check (§6.4) and does *not* start the test.
 
 ### 4.2 Question (one screen per question)
 
 - Shows a progress line **«Питання 3 з 8»** and a thin progress bar, then the question text, then the options.
-- A small logo sits top-left on this and every following screen.
+- The horizontal logo (56px tall) sits top-left on this and every following screen.
 - Landscape: progress and question text on the left, options stacked vertically on the right. Portrait: everything in one column.
 - Options are large tap targets (pill shape, min height 70px, white bg, `--line-input` border, Bold text). Exactly one option is correct.
 - **After a tap:**
   1. All options lock.
-  2. If the answer is correct, the chosen option turns **`--ink` bg, `--bg` text, ✓**, and the line **«Правильно!»** appears.
-  3. If it's wrong, the chosen option turns **`--accent` bg, `--bg` text, ✗**, the correct option turns **`--ink` with ✓**, and **«Неправильно»** appears.
+  2. If the answer is correct, the chosen option turns **`--ink` bg, `--bg` text, ✓**, and the line **«Так!»** appears.
+  3. If it's wrong, the chosen option turns **`--accent` bg, `--bg` text, ✗**, the correct option turns **`--ink` with ✓**, and **«Не правильно»** appears (two words, as requested).
   4. The other options dim.
   5. The **«Далі»** pill appears and moves to the next question, or to Result + Form after the last one. There's no auto-advance.
 - There's no explanation text.
@@ -80,7 +80,7 @@ Intro ──tap──▶ Question 1 … N ──▶ Result + Form ──submit�
 | Label | Rule |
 |---|---|
 | **Ваше імʼя та прізвище** | required, trimmed, not empty |
-| **Ваш номер телефону** | required; numeric keypad (`inputmode="tel"`); auto-formatted as `+380 XX XXX XX XX`; valid only with all 9 digits after `+380` |
+| **Ваш номер телефону** | required; `+380` always shown in black as a fixed prefix; the field takes the 9 national digits (`XX XXX XX XX`, numeric keypad); a leading `0` is accepted and dropped, and a pasted `+380…` number works; stored as `+380 XX XXX XX XX` |
 | **В якій компанії працюєте?** | required, trimmed, not empty |
 
 - Submit button: **«Надіслати 😉»** (primary dark pill). It's disabled until all three fields are valid.
@@ -92,7 +92,7 @@ Intro ──tap──▶ Question 1 … N ──▶ Result + Form ──submit�
 - Display heading **«ДЯКУЄМО, ЩО ПОЗНАЙОМИЛИСЯ З НАМИ ЩЕ КРАЩЕ!»**
 - Text **«Залишився останній крок: долучайтеся до нашої спільноти рієлторів»**
 - The **QR image** (`public/images/qr.png`), up to 420px, on the right in landscape and below the text in portrait.
-- Text **«Тут ми будемо ділитися найновішою інформацією й анонсувати нові проєкти 🫶🏼»**
+- Text **«Тут ми будемо ділитися найновішою інформацією й анонсувати нові проєкти 🫶🏼»**, in the same style as the text above it
 - Pill button **«На початок»**, which goes back to the Intro. The screen also returns there by itself after 60 s.
 
 ## 5. Copy (all user-facing strings)
@@ -102,8 +102,8 @@ Intro ──tap──▶ Question 1 … N ──▶ Result + Form ──submit�
 | Intro heading | РІЄЛТОРСЬКИЙ ТЕСТ від |
 | Intro hint | натисніть, щоб почати |
 | Progress | Питання {n} з {total} |
-| Correct | Правильно! |
-| Wrong | Неправильно |
+| Correct | Так! |
+| Wrong | Не правильно |
 | Next | Далі |
 | Score | {correct} з {total} |
 | Score caption | правильних відповідей |

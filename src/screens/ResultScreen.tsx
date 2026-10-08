@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { Button } from '../components/Button'
 import { Screen, Split } from '../components/Screen'
-import { formatPhone, isValidPhone } from '../lib/phone'
+import { formatNational, fullPhone, isValidPhone } from '../lib/phone'
 import type { Score } from '../quiz/scoring'
 import type { Contact } from '../submissions/types'
 
@@ -14,18 +14,19 @@ const inputClass =
   'h-[74px] w-full rounded-[40px] border border-line-input bg-white px-8 text-lg font-bold text-ink outline-none placeholder:text-sand-dark focus:border-ink'
 
 export function ResultScreen({ score, onSubmit }: Props) {
+  // `phone` holds only the national part ("67 123 45 67"); +380 is shown as a fixed prefix.
   const [contact, setContact] = useState<Contact>({ name: '', phone: '', company: '' })
 
   const valid = contact.name.trim() !== '' && isValidPhone(contact.phone) && contact.company.trim() !== ''
 
   const set = (field: keyof Contact) => (e: ChangeEvent<HTMLInputElement>) => {
-    const value = field === 'phone' ? formatPhone(e.target.value) : e.target.value
+    const value = field === 'phone' ? formatNational(e.target.value) : e.target.value
     setContact((c) => ({ ...c, [field]: value }))
   }
 
   const submit = (e: FormEvent) => {
     e.preventDefault()
-    if (valid) onSubmit({ name: contact.name.trim(), phone: contact.phone, company: contact.company.trim() })
+    if (valid) onSubmit({ name: contact.name.trim(), phone: fullPhone(contact.phone), company: contact.company.trim() })
   }
 
   return (
@@ -43,18 +44,22 @@ export function ResultScreen({ score, onSubmit }: Props) {
             Ваше імʼя та прізвище
             <input className={inputClass} autoComplete="off" value={contact.name} onChange={set('name')} />
           </label>
-          <label className="flex flex-col gap-2 text-lg font-medium">
-            Ваш номер телефону
-            <input
-              className={inputClass}
-              type="tel"
-              inputMode="tel"
-              autoComplete="off"
-              placeholder="+380 XX XXX XX XX"
-              value={contact.phone}
-              onChange={set('phone')}
-            />
-          </label>
+          <div className="flex flex-col gap-2 text-lg font-medium">
+            <label htmlFor="phone">Ваш номер телефону</label>
+            <div className="flex h-[74px] w-full items-center gap-[0.3em] rounded-[40px] border border-line-input bg-white px-8 text-lg font-bold focus-within:border-ink">
+              <span aria-hidden>+380</span>
+              <input
+                id="phone"
+                className="h-full min-w-0 flex-1 bg-transparent text-ink outline-none placeholder:text-sand-dark"
+                type="tel"
+                inputMode="tel"
+                autoComplete="off"
+                placeholder="XX XXX XX XX"
+                value={contact.phone}
+                onChange={set('phone')}
+              />
+            </div>
+          </div>
           <label className="flex flex-col gap-2 text-lg font-medium">
             В якій компанії працюєте?
             <input className={inputClass} autoComplete="off" value={contact.company} onChange={set('company')} />
