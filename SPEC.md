@@ -26,11 +26,12 @@ The user supplies these files. Code references these exact paths.
 | `public/fonts/WorkSans-Medium.*` | 500 |
 | `public/fonts/WorkSans-Bold.*` | 700 |
 | `public/fonts/WorkSans-Black.*` | 900 |
-| `public/images/logo.svg` | Horizontal logo (background removed, cropped), used top-left on every screen after the Intro |
+| `public/images/logo.svg` | Stacked logo from `design/logo-stacked-source.svg` (background removed, cropped), used top-left on every screen after the Intro |
 | `public/images/logo-stacked.svg` | Stacked logo, extracted from the Intro mockup |
 | `public/images/badge-star.svg`, `badge-text.svg` | "100% ~~комісії~~ виграш" badge, extracted from the Intro mockup as two layers with one shared viewBox (the star rotates, the lettering stays still) |
 | `public/images/qr.png` | QR code → `https://t.me/+GtcbVmhgpMk4ZjJi` (permanent invite link), transparent background |
 | `design/intro-mockup.svg` | The supplied Intro design. Reference only, not published |
+| `design/logo-*-source.svg` | Original supplied logo files (stacked, horizontal). Not published |
 | `design/*.pdf` | Original supplied files. Not published |
 
 Fonts are self-hosted with one `font-family: "Work Sans"` and real weights (DESIGN.md §3). They're the Ivan Tsanko Cyrillic build (OFL): Medium supplied by the user, the other weights taken from budynkytaliudy.com, where the Medium file is byte-identical. Google Fonts' Work Sans has no Cyrillic, so it isn't used. The fonts lack "№", so question text must avoid it (a test enforces this). All assets are precached by the service worker.
@@ -59,7 +60,7 @@ Intro ──tap──▶ Question 1 … N ──▶ Result + Form ──submit�
 ### 4.2 Question (one screen per question)
 
 - Shows a progress line **«Питання 3 з 8»** and a thin progress bar, then the question text, then the options.
-- The horizontal logo (56px tall) sits top-left on this and every following screen.
+- The stacked logo (64px tall) sits top-left on this and every following screen.
 - Landscape: progress and question text on the left, options stacked vertically on the right. Portrait: everything in one column.
 - Options are large tap targets (pill shape, min height 70px, white bg, `--line-input` border, Bold text). Exactly one option is correct.
 - **After a tap:**
