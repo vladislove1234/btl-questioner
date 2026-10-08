@@ -82,7 +82,7 @@ export function IntroScreen({ onStart, onStaff }: Props) {
             src={asset('images/badge-text.svg')}
             alt=""
             // Optically centred on the star: the lettering sits a bit low-right in the mockup.
-            className="absolute inset-0 w-full -translate-x-[3%] -translate-y-[3%]"
+            className="absolute inset-0 w-full -translate-x-[3%] -translate-y-[1%]"
           />
         </div>
         <p className="font-medium" style={s.cta}>
