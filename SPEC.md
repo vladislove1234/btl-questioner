@@ -153,10 +153,10 @@ Pressing and holding the Intro badge for 5 s opens a small overlay showing **«�
 
 ## 7. Deployment — GitHub Pages
 
-- A **public** GitHub repo `btl-questioner`. The site is served at `https://<user>.github.io/btl-questioner/`.
+- Public repo **`vladislove1234/btl-questioner`**. The site is served at **`https://vladislove1234.github.io/btl-questioner/`**.
 - Vite `base: '/btl-questioner/'`. The PWA manifest `start_url` and `scope` match that base.
-- A GitHub Actions workflow builds on every push to `main` (Node 20, `npm ci`, `npm run build`) and deploys with `actions/deploy-pages`.
-- `VITE_SUBMIT_URL` and `VITE_SUBMIT_TOKEN` are repo **Secrets** and are passed to the build step as env vars.
+- **Current method:** `npm run deploy` (tests → build with local `.env` → push `dist/` to the `gh-pages` branch via the `gh-pages` package). Pages source: branch `gh-pages`, `/`.
+- **Why not Actions:** the account is locked for billing, so Actions jobs don't start. `.github/workflows/deploy.yml` (build + `actions/deploy-pages`, with `VITE_SUBMIT_URL`/`VITE_SUBMIT_TOKEN` from repo secrets) is kept as manual-only. Once billing is fixed, re-enable it on push to `main` and switch the Pages source to "GitHub Actions".
 - **iPad setup** (README): open the URL in Safari → Share → Add to Home Screen → open from Home Screen once while online → lock rotation → turn on Guided Access.
 
 ## 8. Out of scope
@@ -165,4 +165,5 @@ Admin UI, editing questions without a deploy, explanations, randomization, score
 
 ## 9. Waiting on the user
 
-- Google Sheet with `Code.gs` deployed; its `/exec` URL and the token set as repo secrets `VITE_SUBMIT_URL` / `VITE_SUBMIT_TOKEN`
+- Google Sheet with `Code.gs` deployed; its `/exec` URL and the token in `.env` (`VITE_SUBMIT_URL` / `VITE_SUBMIT_TOKEN`), then `npm run deploy`
+- Optional: fix the GitHub billing lock to get automatic deploys back

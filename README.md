@@ -9,22 +9,32 @@ A quiz for realtors that runs on iPads at events. Participants answer 8 question
 
 ```bash
 npm install
-cp .env.example .env   # optional locally; production values are GitHub secrets
+cp .env.example .env   # Sheet URL + token; used by dev and by npm run deploy
 npm run dev            # http://localhost:5173/btl-questioner/
 npm test
 ```
 
-Questions live in [src/quiz/questions.ts](src/quiz/questions.ts). Push to `main` to publish.
+Questions live in [src/quiz/questions.ts](src/quiz/questions.ts).
+
+## Publishing
+
+```bash
+npm run deploy   # tests, builds with your local .env, pushes dist/ to the gh-pages branch
+```
+
+The site is at https://vladislove1234.github.io/btl-questioner/ and updates about a minute after a deploy. The iPads pick up the new version the next time they open the app while online.
+
+GitHub Actions can't run while the account has a billing lock, so the workflow in `.github/workflows/deploy.yml` is manual-only. Once billing is fixed it can go back to deploying on every push (see the comment in that file).
 
 ## Google Sheet setup (once)
 
 1. Create a Google Sheet → **Extensions → Apps Script** → paste [apps-script/Code.gs](apps-script/Code.gs).
 2. **Project Settings → Script Properties** → add `SUBMIT_TOKEN` with any random string.
 3. **Deploy → New deployment → Web app**. Set Execute as: *Me* and Who has access: *Anyone*. Copy the `/exec` URL.
-4. In the GitHub repo, go to **Settings → Secrets and variables → Actions** and add:
+4. Put both values into `.env` (copy `.env.example`):
    - `VITE_SUBMIT_URL`: the `/exec` URL
    - `VITE_SUBMIT_TOKEN`: the same string as `SUBMIT_TOKEN`
-5. **Actions → Deploy to GitHub Pages → Run workflow** to rebuild with the secrets.
+5. Run `npm run deploy`.
 
 The sheet `Submissions` is created on the first submission, with the columns Час, Імʼя та прізвище, Телефон, Компанія, Результат and a hidden `id`.
 

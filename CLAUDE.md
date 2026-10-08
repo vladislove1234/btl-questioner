@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build`: `tsc -b` + Vite build (also generates the service worker)
 - `npm test`: Vitest single run. For one file: `npx vitest run src/submissions/sync.test.ts`. For one test by name: `npx vitest run -t "keeps unsent"`
 - `npm run lint` / `npm run typecheck`
+- `npm run deploy`: test + build + push `dist/` to the `gh-pages` branch (the live site). Uses local `.env` for `VITE_SUBMIT_*`
 
 ## Node version constraint
 
@@ -27,6 +28,6 @@ A kiosk-style static SPA (React 19 + TS + Tailwind v4) for iPads, served from Gi
 - **Submission pipeline** (`src/submissions/`): every submission is written to the localStorage queue (`queue.ts`) first, then `flushQueue` (`sync.ts`) sends items oldest-first and removes each one only after the server returns `{ok: true}`. It stops at the first failure. `startSync` retries on load, on the `online` event and every 60s. The client generates submission ids and the Apps Script dedups on them, so retries are safe.
 - **Receiver**: `apps-script/Code.gs` is deployed manually to Google Apps Script and is not part of the build. The client POSTs a JSON string *without* setting Content-Type, so the request goes out as text/plain. That avoids a CORS preflight, which Apps Script can't handle. Keep it that way. Changing columns requires updating `HEADERS`, `ID_COLUMN` and `appendRow`, and the script has to be redeployed as a new version.
 - **Offline**: `vite-plugin-pwa` (generateSW, autoUpdate) precaches the build, including fonts and images. The service worker is registered in `src/main.tsx`.
-- **Deploy**: `.github/workflows/deploy.yml` tests, builds and publishes to Pages on every push to `main`. `VITE_SUBMIT_URL` / `VITE_SUBMIT_TOKEN` come from repo secrets.
+- **Deploy**: currently `npm run deploy` → `gh-pages` branch. The GitHub account is billing-locked, so Actions don't run and `.github/workflows/deploy.yml` is manual-only (see its header for how to restore it).
 
 `VITE_SUBMIT_TOKEN` ends up in the client bundle. It only keeps out casual spam and is not a secret.

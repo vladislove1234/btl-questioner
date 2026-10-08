@@ -1,8 +1,9 @@
 name: Deploy to GitHub Pages
 
+# Manual only for now: the vladislove1234 account is locked for billing, so Actions jobs
+# don't start. Until that's fixed, deploy with `npm run deploy` (pushes dist/ to gh-pages).
+# To switch back: restore `push: branches: [main]`, then set Pages source to "GitHub Actions".
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
