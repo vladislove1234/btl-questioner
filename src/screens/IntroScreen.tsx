@@ -78,7 +78,12 @@ export function IntroScreen({ onStart, onStaff }: Props) {
           onContextMenu={(e) => e.preventDefault()}
         >
           <img src={asset('images/badge-star.svg')} alt="" className="block w-full animate-[spin_20s_linear_infinite]" />
-          <img src={asset('images/badge-text.svg')} alt="" className="absolute inset-0 w-full" />
+          <img
+            src={asset('images/badge-text.svg')}
+            alt=""
+            // Optically centred on the star: the lettering sits a bit low-right in the mockup.
+            className="absolute inset-0 w-full -translate-x-[3%] -translate-y-[3%]"
+          />
         </div>
         <p className="font-medium" style={s.cta}>
           натисніть, щоб почати
