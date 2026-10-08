@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+
+/* Work Sans with Cyrillic (Ivan Tsanko build); Google Fonts' Work Sans has no Cyrillic. */
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/WorkSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/WorkSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/WorkSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Work Sans';
+  src: url('/fonts/WorkSans-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-display: block;
+}
+
+/* DESIGN.md tokens; bg is #EEECE4 to match the supplied artwork (SPEC §1). */
+@theme {
+  --font-sans: 'Work Sans', system-ui, sans-serif;
+  --color-bg: #eeece4;
+  --color-ink: #201f25;
+  --color-muted: #565550;
+  --color-accent: #984535;
+  --color-sand: #dacbb4;
+  --color-sand-dark: #aea488;
+  --color-line: #d6d3c9;
+  --color-line-input: #ebe3d7;
+}
+
+/* Kiosk ergonomics: no text selection, no callouts, no pull-to-refresh, no tap highlight. */
+html,
+body,
+#root {
+  min-height: 100%;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+input {
+  user-select: text;
+}
+
+img {
+  -webkit-user-drag: none;
+}
